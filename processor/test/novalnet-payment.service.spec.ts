@@ -107,7 +107,7 @@ const novalnetPaymentService =
     expect(result?.components[16]?.type).toStrictEqual("Trustly");
     expect(result?.components[17]?.type).toStrictEqual("TWINT");
     expect(result?.components[18]?.type).toStrictEqual("WeChat Pay");
-    expect(result?.components[19]?.type).toStrictEqual("Direct Debit SEPA");
+    expect(result?.components[19]?.type).toStrictEqual("sepa");
     expect(result?.components[20]?.type).toStrictEqual("Direct Debit ACH");
     expect(result?.components[21]?.type).toStrictEqual("Credit/Debit Cards");
   });
