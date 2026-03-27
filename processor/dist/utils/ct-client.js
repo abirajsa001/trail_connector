@@ -1,24 +1,35 @@
+import { getConfig } from "../config/config";
+import { log } from "../libs/logger";
+const logger_1 = require("../libs/logger");
+
+logger_1.log.info("js file logger1 authurl fetched", {
+  customerData: String(getConfig()?.authUrl),
+});
+log.info("js file logInfo apiUrl fetched", {
+  customerDataID: String(getConfig()?.apiUrl),
+});
+
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.projectApiRoot = void 0;
 exports.getApiRoot = getApiRoot;
 const sdk_client_v2_1 = require("@commercetools/sdk-client-v2");
 const platform_sdk_1 = require("@commercetools/platform-sdk");
-const projectKey = 'trailprojectkey';
-const authUrl = 'https://auth.europe-west1.gcp.commercetools.com';
-const apiUrl = 'https://api.europe-west1.gcp.commercetools.com';
-const clientId = 'IMYB1nOzGx0dtuShc-hieoG9';
-const clientSecret = 'I-IjzEFDzTu1WFvlixQsD1HKb9S2orfz';
+const projectKey = String(getConfig()?.projectKey);
+const authUrl = String(getConfig()?.authUrl);
+const apiUrl = String(getConfig()?.apiUrl);
+const clientId = String(getConfig()?.clientId);
+const clientSecret = String(getConfig()?.clientSecret);
 const authMiddlewareOptions = {
-    host: "https://auth.europe-west1.gcp.commercetools.com",
+    host:  String(getConfig()?.authUrl),
     projectKey,
     credentials: {
-        clientId: 'IMYB1nOzGx0dtuShc-hieoG9',
-        clientSecret: 'I-IjzEFDzTu1WFvlixQsD1HKb9S2orfz',
+        clientId:  String(getConfig()?.clientId),
+        clientSecret:  String(getConfig()?.clientSecret),
     },
 };
 const httpMiddlewareOptions = {
-    host: "https://api.europe-west1.gcp.commercetools.com",
+    host: String(getConfig()?.apiUrl),
 };
 const ctpClient = new sdk_client_v2_1.ClientBuilder()
     .withClientCredentialsFlow(authMiddlewareOptions)
