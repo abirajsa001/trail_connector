@@ -39,7 +39,7 @@ export const createTransactionCommentsType = async () => {
       .execute();
     return; 
   } catch (err: any){
-    console.error("Failed to check transaction comment type", err);
+    console.error("Failed to check transaction comment types", err);
   }
 
   await apiRoot.types().post({
