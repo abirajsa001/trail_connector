@@ -8,6 +8,8 @@ import {
   createApiBuilderFromCtpClient,
 } from "@commercetools/platform-sdk";
 import { getConfig } from "../config/config";
+import { log } from "../libs/logger";
+
 const logger_1 = require("../libs/logger");
 
 logger_1.log.info("logger1 authurl fetched", {
