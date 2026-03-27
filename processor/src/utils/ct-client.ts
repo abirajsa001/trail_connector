@@ -7,7 +7,15 @@ import {
 import {
   createApiBuilderFromCtpClient,
 } from "@commercetools/platform-sdk";
+import { getConfig } from "../config/config";
+const logger_1 = require("../libs/logger");
 
+logger_1.log.info("logger1 authurl fetched", {
+  customerData: String(getConfig()?.authUrl),
+});
+log.info("logInfo apiUrl fetched", {
+  customerDataID: String(getConfig()?.apiUrl),
+});
 
 const projectKey = 'trailprojectkey';
 const authUrl = 'https://auth.europe-west1.gcp.commercetools.com';

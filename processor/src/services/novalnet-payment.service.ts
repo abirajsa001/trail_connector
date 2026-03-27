@@ -149,8 +149,8 @@ export class NovalnetPaymentService extends AbstractPaymentService {
             "manage_types",
           ],
           ctAuthorizationService: paymentSDK.ctAuthorizationService,
-          projectKey: getConfig().projectKey,
-        }),
+          projectKey: ().projectKey,
+        }),getConfig
         async () => {
           try {
             const paymentMethods = "card";
