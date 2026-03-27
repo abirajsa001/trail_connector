@@ -149,56 +149,67 @@ export type EnablerOptions = {
  */
 export enum PaymentMethod {
   /* Apple Pay */
-  applepay = "Apple Pay",
+  applepay = "applepay",
+  /* Bancontact card */
+  bancontactcard = "bcmc",
   /* EPS */
   eps = "eps",
+  /* Google Pay */
+  googlepay = "googlepay",
   /* iDeal */
-  ideal = "iDEAL",
+  ideal = "ideal",
   /* Invoice */
-  invoice = "Invoice",
+  invoice = "invoice",
+  /* Klarna Pay Later */
+  klarna_pay_later = "klarna",
+  /* Klarna Pay Now */
+  klarna_pay_now = "klarna_paynow",
+  /* Klarna Pay Over Time */
+  klarna_pay_overtime = "klarna_account",
   /* PayPal */
-  paypal = "Paypal",
+  paypal = "paypal",
   /* Prepayment */
   Prepayment = "Prepayment",
   /* GuaranteedInvoice */
-  GuaranteedInvoice = "Invoice with payment guarantee",
+  GuaranteedInvoice = "GuaranteedInvoice",
   /* GuaranteedSepa */
-  GuaranteedSepa = "Direct debit SEPA with payment guarantee",
+  GuaranteedSepa = "GuaranteedSepa",
   /* Ideal */
-  Ideal = "iDEAL",
+  Ideal = "ideal",
   /* TWINT */
-  twint = "TWINT",
+  twint = "twint",
   /* SEPA */
-  sepa = "Direct Debit SEPA",
+  sepa = "sepa",
   /* ACH */
-  ach = "Direct Debit ACH",
+  ach = "ach",
   /* CREDIT CARD */
-  creditcard = "Credit/Debit Cards",
+  creditcard = "creditcard",
   /* Online Bank Transfer */
-  onlinebanktransfer = "Online bank transfer",
+  onlinebanktransfer = "onlinebanktransfer",
   /* Alipay */
-  alipay = "Alipay",
+  alipay = "alipay",
   /* Bancontact */
-  bancontact = "Bancontact",
+  bancontact = "bancontact",
   /* Blik */
-  blik = "Blik",
+  blik = "blik",
   /* MBWay */
-  mbway = "MBWay",
+  mbway = "mbway",
   /* Multibanco */
-  multibanco = "Multibanco",
+  multibanco = "multibanco",
   /* Payconiq */
-  payconiq = "Payconiq",
+  payconiq = "payconiq",
   /* Postfinance */
-  postfinance = "PostFinance E-Finance",
+  postfinance = "postfinance",
   /* Postfinancecard */
-  postfinancecard = "PostFinance Card",
+  postfinancecard = "postfinancecard",
   /* przelewy24 */
-  przelewy24 = "Przelewy24",
+  przelewy24 = "przelewy24",
   /* Trustly */
-  trustly = "Trustly",
+  trustly = "trustly",
   /* Wechatpay */
-  wechatpay = "WeChat Pay",  
+  wechatpay = "wechatpay",  
 }
+
 
 /**
  * Represents the result of a payment.
