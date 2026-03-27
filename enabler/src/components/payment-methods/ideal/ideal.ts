@@ -55,7 +55,7 @@ export class Ideal extends BaseComponent {
     try {
       const requestData: PaymentRequestSchemaDTO = {
         paymentMethod: {
-          type: this.paymentMethod,
+          type: 'IDEAL',
         },
         paymentOutcome: PaymentOutcome.AUTHORIZED,
         lang: pathLocale ?? 'de',
