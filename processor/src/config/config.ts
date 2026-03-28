@@ -82,9 +82,9 @@ export const config = {
   novalnet_WECHATPAY_TestMode:
     process.env.NOVALNET_WECHATPAY_TEST_MODE || "0",      
   novalnet_INVOICE_DueDate:
-    process.env.NOVALNET_INVOICE_DUE_DATE || "14",
+    process.env.NOVALNET_INVOICE_DUE_DATE || "0",
   novalnet_PREPAYMENT_DueDate:
-    process.env.NOVALNET_PREPAYMENT_DUE_DATE || "14",
+    process.env.NOVALNET_PREPAYMENT_DUE_DATE || "0",
   novalnet_SEPA_DueDate:
     process.env.NOVALNET_SEPA_DUE_DATE || "0",
   novalnet_INVOICE_PaymentAction:

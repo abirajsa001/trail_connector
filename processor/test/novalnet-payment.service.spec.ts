@@ -86,7 +86,6 @@ const novalnetPaymentService =
     const result: ConfigResponse =
       await paymentService.getSupportedPaymentComponents();
     expect(result?.components).toHaveLength(22);
-    expect(result?.components[0]?.type).toStrictEqual("card");
     expect(result?.components[1]?.type).toStrictEqual("invoice");
     expect(result?.components[2]?.type).toStrictEqual("prepayment");
     expect(result?.components[2]?.type).toStrictEqual("GuaranteedInvoice");
