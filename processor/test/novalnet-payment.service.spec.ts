@@ -37,7 +37,6 @@ import {
   PaymentOutcome,
 } from "../src/dtos/novalnet-payment.dto";
 import { TransactionDraftDTO } from "../src/dtos/operations/transaction.dto";
-console.log("novalnet-payment.service.spec.ts-test");
 interface FlexibleConfig {
   [key: string]: string; // Adjust the type according to your config values
 }
@@ -99,7 +98,6 @@ const novalnetPaymentService =
     expect(result?.components[9]?.type).toStrictEqual("eps");
     expect(result?.components[10]?.type).toStrictEqual("mbway");
     expect(result?.components[11]?.type).toStrictEqual("multibanco");
-    expect(result?.components[12]?.type).toStrictEqual("payconiq");
     expect(result?.components[13]?.type).toStrictEqual("postfinance");
     expect(result?.components[14]?.type).toStrictEqual("postfinancecard");
     expect(result?.components[15]?.type).toStrictEqual("przelewy24");

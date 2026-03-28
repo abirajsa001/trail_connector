@@ -39,7 +39,6 @@ export abstract class BaseComponent implements PaymentComponent {
   protected completePayment(result: PaymentResult) {
     if (!this.paymentCompleted) {
       this.paymentCompleted = true;
-      console.log('Payment completed:', result);
       this.onComplete(result);
     }
   }

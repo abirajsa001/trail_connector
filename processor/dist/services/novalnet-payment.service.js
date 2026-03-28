@@ -138,7 +138,6 @@ class NovalnetPaymentService extends abstract_payment_service_1.AbstractPaymentS
     async getSupportedPaymentComponents() {
         return {
             components: [
-                { type: novalnet_payment_dto_1.PaymentMethodType.CARD },
                 { type: novalnet_payment_dto_1.PaymentMethodType.INVOICE },
                 { type: novalnet_payment_dto_1.PaymentMethodType.PREPAYMENT },
                 { type: novalnet_payment_dto_1.PaymentMethodType.GUARANTEED_INVOICE },
@@ -152,7 +151,6 @@ class NovalnetPaymentService extends abstract_payment_service_1.AbstractPaymentS
                 { type: novalnet_payment_dto_1.PaymentMethodType.EPS },
                 { type: novalnet_payment_dto_1.PaymentMethodType.MBWAY },
                 { type: novalnet_payment_dto_1.PaymentMethodType.MULTIBANCO },
-                { type: novalnet_payment_dto_1.PaymentMethodType.PAYCONIQ },
                 { type: novalnet_payment_dto_1.PaymentMethodType.POSTFINANCE },
                 { type: novalnet_payment_dto_1.PaymentMethodType.POSTFINANCE_CARD },
                 { type: novalnet_payment_dto_1.PaymentMethodType.PRZELEWY24 },

@@ -78,9 +78,6 @@ import {
       const iban = ibanInput?.value.trim() ?? '';
       const bic = bicInput?.value.trim() ?? '';
       const birthdate = birthdateInput?.value.trim() ?? "";
-      console.log('birthdate');
-      console.log(birthdate);
-      console.log(this.paymentMethod);
       const requestData: PaymentRequestSchemaDTO = {
           paymentMethod: {
             type: "GUARANTEED_DIRECT_DEBIT_SEPA",

@@ -29,7 +29,6 @@ const typebox_1 = require("@sinclair/typebox");
  *
  *
  */
-console.log('status.dto.ts');
 exports.StatusResponseSchema = typebox_1.Type.Object({
     status: typebox_1.Type.String(),
     timestamp: typebox_1.Type.String(),

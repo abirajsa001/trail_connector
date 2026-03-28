@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AbstractPaymentService = void 0;
 const connect_payments_sdk_1 = require("@commercetools/connect-payments-sdk");
-console.log('abstract-payment.service.ts');
+
 class AbstractPaymentService {
     ctCartService;
     ctPaymentService;

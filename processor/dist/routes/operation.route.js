@@ -7,7 +7,6 @@ const payment_componets_dto_1 = require("../dtos/operations/payment-componets.dt
 const payment_intents_dto_1 = require("../dtos/operations/payment-intents.dto");
 const status_dto_1 = require("../dtos/operations/status.dto");
 const transaction_dto_1 = require("../dtos/operations/transaction.dto");
-console.log('operation.type.ts');
 const operationsRoute = async (fastify, opts) => {
     fastify.get('/config', {
         preHandler: [opts.sessionHeaderAuthHook.authenticate()],

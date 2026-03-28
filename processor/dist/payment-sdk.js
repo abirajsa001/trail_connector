@@ -5,7 +5,6 @@ const connect_payments_sdk_1 = require("@commercetools/connect-payments-sdk");
 const config_1 = require("./config/config");
 const context_1 = require("./libs/fastify/context/context");
 const index_1 = require("./libs/logger/index");
-console.log('payment-sdk.ts');
 class AppLogger {
     debug = (obj, message) => {
         index_1.log.debug(message, obj || undefined);
@@ -22,7 +21,6 @@ class AppLogger {
 }
 exports.AppLogger = AppLogger;
 exports.appLogger = new AppLogger();
-console.log('paymentSDKfileCalled');
 exports.paymentSDK = (0, connect_payments_sdk_1.setupPaymentSDK)({
     apiUrl: config_1.config.apiUrl,
     authUrl: config_1.config.authUrl,

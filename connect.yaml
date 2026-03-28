@@ -154,9 +154,6 @@ deployAs:
         - key: NOVALNET_ONLINE_BANK_TRANSFER_TEST_MODE
           description: Enable test mode for Online Bank Transfer (0=Live, 1=Test)
           required: false
-        - key: NOVALNET_PAYCONIQ_TEST_MODE
-          description: Enable test mode for Payconiq (0=Live, 1=Test)
-          required: false
         - key: NOVALNET_PAYPAL_TEST_MODE
           description: Enable test mode for Paypal (0=Live, 1=Test)
           required: false

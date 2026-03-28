@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TransactionResponse = exports.TransactionStatusState = exports.TransactionDraft = void 0;
 const typebox_1 = require("@sinclair/typebox");
-console.log('TransactionStatePending-start');
+
 exports.TransactionDraft = typebox_1.Type.Object({
     cartId: typebox_1.Type.String({ format: 'uuid' }),
     paymentInterface: typebox_1.Type.String({ format: 'uuid' }),
@@ -15,7 +15,7 @@ exports.TransactionDraft = typebox_1.Type.Object({
 const TransactionStatePending = typebox_1.Type.Literal('Pending', {
     description: 'The authorization/capture has not happened yet. Most likely because we need to receive notification.',
 });
-console.log('TransactionStatePending-end');
+
 const TransactionStateFailed = typebox_1.Type.Literal('Failed', {
     description: "Any error that occured for which the system can't recover automatically from.",
 });

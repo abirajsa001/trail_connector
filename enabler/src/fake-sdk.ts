@@ -11,7 +11,6 @@ export class FakeSdk {
    */
   constructor({ environment }) {
     this.environment = environment;
-    console.log('FakeSdk constructor', this.environment);
   }
 
   /**

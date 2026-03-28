@@ -19,7 +19,6 @@ export enum PaymentMethodType {
   EPS = "eps",
   MBWAY = "mbway",
   MULTIBANCO = "multibanco",
-  PAYCONIQ = "payconiq",
   POSTFINANCE = "postfinance",
   POSTFINANCE_CARD = "postfinancecard",
   PRZELEWY24 = "przelewy24",
@@ -37,7 +36,7 @@ export const PaymentResponseSchema = Type.Object({
   transactionStatus: Type.Optional(Type.String()),
   transactionStatusText: Type.Optional(Type.String()),
 });
-console.log("novalnet-payment-dto.ts");
+
 export const PaymentOutcomeSchema = Type.Enum(PaymentOutcome);
 
 export const PaymentRequestSchema = Type.Object({

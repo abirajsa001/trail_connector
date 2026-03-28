@@ -63,8 +63,6 @@ export const config = {
     process.env.NOVALNET_EPS_TEST_MODE || "0",
   novalnet_MBWAY_TestMode:
     process.env.NOVALNET_MBWAY_TEST_MODE || "0", 
-  novalnet_PAYCONIQ_TestMode:
-    process.env.NOVALNET_PAYCONIQ_TEST_MODE || "0",
   novalnet_PAYPAL_TestMode:
     process.env.NOVALNET_PAYPAL_TEST_MODE || "0",
   novalnet_POSTFINANCE_TestMode:

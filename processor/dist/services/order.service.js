@@ -14,11 +14,9 @@ async function getOrderByOrderNumber(orderNumber) {
             .withOrderNumber({ orderNumber })
             .get()
             .execute();
-        console.log('Mock API response:', response.body);
         return response.body;
     }
     catch (error) {
-        console.log('Error fetching order (mock):', error);
         return null;
     }
 }

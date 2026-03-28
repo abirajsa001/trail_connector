@@ -2,7 +2,6 @@ import { RequestContextData, setupPaymentSDK, Logger } from '@commercetools/conn
 import { config } from './config/config';
 import { getRequestContext, updateRequestContext } from './libs/fastify/context/context';
 import { log } from './libs/logger/index';
-console.log('payment-sdk.ts');
 export class AppLogger implements Logger {
   public debug = (obj: object, message: string) => {
     log.debug(message, obj || undefined);
@@ -17,9 +16,7 @@ export class AppLogger implements Logger {
     log.error(message, obj || undefined);
   };
 }
-
 export const appLogger = new AppLogger();
-console.log('paymentSDKfileCalled');
 export const paymentSDK = setupPaymentSDK({
   apiUrl: config.apiUrl,
   authUrl: config.authUrl,

@@ -201,7 +201,6 @@ export class NovalnetPaymentService extends AbstractPaymentService {
         { type: PaymentMethodType.EPS },
         { type: PaymentMethodType.MBWAY },
         { type: PaymentMethodType.MULTIBANCO },
-        { type: PaymentMethodType.PAYCONIQ },
         { type: PaymentMethodType.POSTFINANCE },
         { type: PaymentMethodType.POSTFINANCE_CARD },
         { type: PaymentMethodType.PRZELEWY24 },

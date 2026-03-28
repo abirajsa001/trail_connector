@@ -12,7 +12,7 @@ const mockChargePaymentTransaction: Transaction = {
   },
   state: 'Success',
 };
-console.log('novalnet-payment.service.spec.ts-test');
+
 export const mockGetPaymentResult: Payment = {
   id: '123456',
   version: 1,

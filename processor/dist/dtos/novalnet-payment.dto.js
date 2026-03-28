@@ -22,7 +22,6 @@ var PaymentMethodType;
     PaymentMethodType["EPS"] = "eps";
     PaymentMethodType["MBWAY"] = "mbway";
     PaymentMethodType["MULTIBANCO"] = "multibanco";
-    PaymentMethodType["PAYCONIQ"] = "payconiq";
     PaymentMethodType["POSTFINANCE"] = "postfinance";
     PaymentMethodType["POSTFINANCE_CARD"] = "postfinancecard";
     PaymentMethodType["PRZELEWY24"] = "przelewy24";
@@ -40,7 +39,7 @@ exports.PaymentResponseSchema = typebox_1.Type.Object({
     transactionStatus: typebox_1.Type.Optional(typebox_1.Type.String()),
     transactionStatusText: typebox_1.Type.Optional(typebox_1.Type.String()),
 });
-console.log("novalnet-payment-dto.ts");
+
 exports.PaymentOutcomeSchema = typebox_1.Type.Enum(PaymentOutcome);
 exports.PaymentRequestSchema = typebox_1.Type.Object({
     paymentMethod: typebox_1.Type.Object({

@@ -11,7 +11,6 @@ const novalnet_payment_dto_1 = require("../dtos/novalnet-payment.dto");
 const logger_1 = require("../libs/logger");
 const config_1 = require("../config/config");
 const ct_client_1 = require("../utils/ct-client");
-console.log("before-payment-routes");
 logger_1.log.info("before-payment-routes");
 const paymentRoutes = async (fastify, opts) => {
     fastify.post("/redirectPayment", {

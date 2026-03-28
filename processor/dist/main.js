@@ -36,7 +36,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv = __importStar(require("dotenv"));
 dotenv.config();
 const server_1 = require("./server/server");
-console.log('main.ts');
 (async () => {
     const server = await (0, server_1.setupFastify)();
     const HOST = '0.0.0.0';

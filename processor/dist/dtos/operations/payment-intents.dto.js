@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PaymentIntentResponseSchema = exports.PaymentModificationStatus = exports.PaymentIntentRequestSchema = exports.ActionReversePaymentSchema = exports.ActionCancelPaymentSchema = exports.ActionRefundPaymentSchema = exports.ActionCapturePaymentSchema = exports.AmountSchema = void 0;
 const typebox_1 = require("@sinclair/typebox");
-console.log('payment-intents.dto.ts');
 exports.AmountSchema = typebox_1.Type.Object({
     centAmount: typebox_1.Type.Integer(),
     currencyCode: typebox_1.Type.String(),

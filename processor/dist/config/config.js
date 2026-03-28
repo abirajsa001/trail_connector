@@ -40,7 +40,6 @@ exports.config = {
     novalnet_BLIK_TestMode: process.env.NOVALNET_BLIK_TEST_MODE || "0",
     novalnet_EPS_TestMode: process.env.NOVALNET_EPS_TEST_MODE || "0",
     novalnet_MBWAY_TestMode: process.env.NOVALNET_MBWAY_TEST_MODE || "0",
-    novalnet_PAYCONIQ_TestMode: process.env.NOVALNET_PAYCONIQ_TEST_MODE || "0",
     novalnet_PAYPAL_TestMode: process.env.NOVALNET_PAYPAL_TEST_MODE || "0",
     novalnet_POSTFINANCE_TestMode: process.env.NOVALNET_POSTFINANCE_TEST_MODE || "0",
     novalnet_POSTFINANCE_CARD_TestMode: process.env.NOVALNET_POSTFINANCE_CARD_TEST_MODE || "0",

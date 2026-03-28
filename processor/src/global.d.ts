@@ -1,6 +1,5 @@
 import '@fastify/request-context';
 import { ContextData, SessionContextData } from './libs/fastify/context/context';
-console.log('global.d.ts');
 declare module '@fastify/request-context' {
   interface RequestContextData {
     request: ContextData;
