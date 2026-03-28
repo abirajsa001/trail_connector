@@ -545,7 +545,7 @@ export class NovalnetPaymentService extends AbstractPaymentService {
           action: "setTransactionCustomType",
           transactionId: txId,
           type: {
-            key: "novalnet-transaction-comments-v2",
+            key: "novalnet-custom-field",
             typeId: "type",
           },
         },
@@ -1010,7 +1010,7 @@ export class NovalnetPaymentService extends AbstractPaymentService {
         custom: {
           type: {
             typeId: "type",
-            key: "novalnet-transaction-comments-v2",
+            key: "novalnet-custom-field",
           },
           fields: {
             transactionComments,
@@ -2271,7 +2271,7 @@ export class NovalnetPaymentService extends AbstractPaymentService {
         custom: {
           type: {
             typeId: "type",
-            key: "novalnet-transaction-comments-v2",
+            key: "novalnet-custom-field",
           },
           fields: {
             transactionComments,
