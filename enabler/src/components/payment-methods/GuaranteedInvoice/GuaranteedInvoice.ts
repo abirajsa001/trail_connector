@@ -70,9 +70,6 @@ import {
       try {
         const birthdateInput = document.getElementById("nn_birthdate") as HTMLInputElement;
         const birthdate = birthdateInput?.value.trim() ?? "";
-        console.log('birthdate');
-        console.log(birthdate);
-        console.log(this.paymentMethod);
         const requestData: PaymentRequestSchemaDTO = {
           paymentMethod: {
             type: "GUARANTEED_INVOICE",

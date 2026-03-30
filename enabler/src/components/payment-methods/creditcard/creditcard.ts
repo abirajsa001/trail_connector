@@ -258,8 +258,7 @@ export class Creditcard extends BaseComponent {
     } catch (err) {
       console.warn("initPaymentProcessor: getconfig fetch failed (non-fatal):", err);
     }
-    console.log(this.clientKey);
-    NovalnetUtility.setClientKey("88fcbbceb1948c8ae106c3fe2ccffc12");
+    NovalnetUtility.setClientKey(this.clientKey);
     const configurationObject = {
       callback: {
         on_success: (data: any) => {

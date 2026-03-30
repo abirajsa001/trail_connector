@@ -66,7 +66,5 @@ const getSessionId = async(cartId) => {
     console.error("Not able to create session:", url, data)
     throw new Error("Not able to create session")
   }
-
-  console.log("Session created:", data)
   return data.id;
 }
