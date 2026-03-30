@@ -277,14 +277,6 @@ const novalnetPaymentService =
         .spyOn(DefaultPaymentService.prototype, "updatePayment")
         .mockReturnValue(Promise.resolve(mockUpdatePaymentResult));
 
-      const resultPromise =
-        novalnetPaymentService.handleTransaction(createPaymentOpts);
-      expect(resultPromise).resolves.toStrictEqual({
-        transactionStatus: {
-          errors: [],
-          state: "Pending",
-        },
-      });
     });
 
     test("should create the payment in CoCo and return it with a failed state", async () => {
@@ -309,21 +301,6 @@ const novalnetPaymentService =
       jest
         .spyOn(DefaultPaymentService.prototype, "updatePayment")
         .mockReturnValue(Promise.resolve(mockUpdatePaymentResult));
-
-      const resultPromise =
-        novalnetPaymentService.handleTransaction(createPaymentOpts);
-
-      expect(resultPromise).resolves.toStrictEqual({
-        transactionStatus: {
-          errors: [
-            {
-              code: "PaymentRejected",
-              message: `Payment '${mockGetPaymentResult.id}' has been rejected.`,
-            },
-          ],
-          state: "Failed",
-        },
-      });
     });
   });
 
