@@ -198,9 +198,9 @@ export const paymentRoutes = async (
         orderNumber: query.orderNumber,
         ctPaymentID: query.ctPaymentID,
         pspReference: query.pspReference,
-        tid: query.tid ?? 'empty-tid',
-        status_text: query.status_text ?? 'empty-status-text',
-        payment_type: query.payment_type ?? 'empty-payment-type',
+        tid: query.tid,
+        status_text: query.status_text ,
+        payment_type: query.payment_type,
       };
     
       const jsonBody = JSON.stringify(requestData);
@@ -242,7 +242,7 @@ export const paymentRoutes = async (
   fastify.post<{ Body: PaymentRequestSchemaDTO }>('/getCustomerAddress',
     async (req: FastifyRequest<{ Body: PaymentRequestSchemaDTO }>, reply: FastifyReply) => {
       const carts = await projectApiRoot.carts().get().execute();
-      const cartId = carts.body.results[0]?.id ?? 'empty1';
+      const cartId = carts.body.results[0]?.id;
       const resp = await opts.paymentService.getCustomerAddress({
         data: req.body,
         cartId,

@@ -8,12 +8,8 @@ import {
   ErrorInvalidOperation,
 } from "@commercetools/connect-payments-sdk";
 import {
-  CancelPaymentRequest,
-  CapturePaymentRequest,
   ConfigResponse,
   PaymentProviderModificationResponse,
-  RefundPaymentRequest,
-  ReversePaymentRequest,
   StatusResponse,
 } from "./types/operation.type";
 import {
@@ -212,103 +208,6 @@ export class NovalnetPaymentService extends AbstractPaymentService {
         { type: PaymentMethodType.CREDITCARD },
       ],
     };
-  }
-
-  public async capturePayment(
-    request: CapturePaymentRequest
-  ): Promise<PaymentProviderModificationResponse> {
-    await this.ctPaymentService.updatePayment({
-      id: request.payment.id,
-      transaction: {
-        type: "Charge",
-        amount: request.amount,
-        interactionId: request.payment.interfaceId,
-        state: "Success",
-      },
-    });
-    return {
-      outcome: PaymentModificationStatus.APPROVED,
-      pspReference: request.payment.interfaceId as string,
-    };
-  }
-
-  public async cancelPayment(
-    request: CancelPaymentRequest
-  ): Promise<PaymentProviderModificationResponse> {
-    await this.ctPaymentService.updatePayment({
-      id: request.payment.id,
-      transaction: {
-        type: "CancelAuthorization",
-        amount: request.payment.amountPlanned,
-        interactionId: request.payment.interfaceId,
-        state: "Success",
-      },
-    });
-    return {
-      outcome: PaymentModificationStatus.APPROVED,
-      pspReference: request.payment.interfaceId as string,
-    };
-  }
-
-  public async refundPayment(
-    request: RefundPaymentRequest
-  ): Promise<PaymentProviderModificationResponse> {
-    await this.ctPaymentService.updatePayment({
-      id: request.payment.id,
-      transaction: {
-        type: "Refund",
-        amount: request.amount,
-        interactionId: request.payment.interfaceId,
-        state: "Success",
-      },
-    });
-    return {
-      outcome: PaymentModificationStatus.APPROVED,
-      pspReference: request.payment.interfaceId as string,
-    };
-  }
-
-  public async reversePayment(
-    request: ReversePaymentRequest
-  ): Promise<PaymentProviderModificationResponse> {
-    const hasCharge = this.ctPaymentService.hasTransactionInState({
-      payment: request.payment,
-      transactionType: "Charge",
-      states: ["Success"],
-    });
-    const hasRefund = this.ctPaymentService.hasTransactionInState({
-      payment: request.payment,
-      transactionType: "Refund",
-      states: ["Success", "Pending"],
-    });
-    const hasCancelAuthorization = this.ctPaymentService.hasTransactionInState({
-      payment: request.payment,
-      transactionType: "CancelAuthorization",
-      states: ["Success", "Pending"],
-    });
-
-    const wasPaymentReverted = hasRefund || hasCancelAuthorization;
-
-    if (hasCharge && !wasPaymentReverted) {
-      return this.refundPayment({
-        payment: request.payment,
-        merchantReference: request.merchantReference,
-        amount: request.payment.amountPlanned,
-      });
-    }
-
-    const hasAuthorization = this.ctPaymentService.hasTransactionInState({
-      payment: request.payment,
-      transactionType: "Authorization",
-      states: ["Success"],
-    });
-    if (hasAuthorization && !wasPaymentReverted) {
-      return this.cancelPayment({ payment: request.payment });
-    }
-
-    throw new ErrorInvalidOperation(
-      "There is no successful payment transaction to reverse."
-    );
   }
 
   public async ctcc(cart: Cart) {

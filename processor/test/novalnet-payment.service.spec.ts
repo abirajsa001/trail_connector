@@ -163,64 +163,6 @@ const novalnetPaymentService =
     expect(result?.outcome).toStrictEqual("approved");
   });
 
-  test("capturePayment", async () => {
-    const modifyPaymentOpts: ModifyPayment = {
-      paymentId: "dummy-paymentId",
-      data: {
-        actions: [
-          {
-            action: "capturePayment",
-            amount: {
-              centAmount: 150000,
-              currencyCode: "USD",
-            },
-          },
-        ],
-      },
-    };
-    jest
-      .spyOn(DefaultPaymentService.prototype, "getPayment")
-      .mockReturnValue(Promise.resolve(mockGetPaymentResult));
-    jest
-      .spyOn(DefaultPaymentService.prototype, "updatePayment")
-      .mockReturnValue(Promise.resolve(mockUpdatePaymentResult));
-    jest
-      .spyOn(DefaultPaymentService.prototype, "updatePayment")
-      .mockReturnValue(Promise.resolve(mockUpdatePaymentResult));
-
-    const result = await paymentService.modifyPayment(modifyPaymentOpts);
-    expect(result?.outcome).toStrictEqual("approved");
-  });
-
-  test("refundPayment", async () => {
-    const modifyPaymentOpts: ModifyPayment = {
-      paymentId: "dummy-paymentId",
-      data: {
-        actions: [
-          {
-            action: "refundPayment",
-            amount: {
-              centAmount: 150000,
-              currencyCode: "USD",
-            },
-          },
-        ],
-      },
-    };
-    jest
-      .spyOn(DefaultPaymentService.prototype, "getPayment")
-      .mockReturnValue(Promise.resolve(mockGetPaymentResult));
-    jest
-      .spyOn(DefaultPaymentService.prototype, "updatePayment")
-      .mockReturnValue(Promise.resolve(mockUpdatePaymentResult));
-    jest
-      .spyOn(DefaultPaymentService.prototype, "updatePayment")
-      .mockReturnValue(Promise.resolve(mockUpdatePaymentResult));
-
-    const result = await paymentService.modifyPayment(modifyPaymentOpts);
-    expect(result?.outcome).toStrictEqual("approved");
-  });
-
   test("create card payment", async () => {
     const createPaymentOpts: CreatePaymentRequest = {
       data: {
