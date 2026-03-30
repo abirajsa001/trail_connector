@@ -4,6 +4,40 @@ export const AmountSchema = Type.Object({
   currencyCode: Type.String(),
 });
 
+export const ActionCapturePaymentSchema = Type.Composite([
+  Type.Object({
+    action: Type.Literal('capturePayment'),
+  }),
+  Type.Object({
+    amount: AmountSchema,
+    merchantReference: Type.Optional(Type.String()),
+  }),
+]);
+
+export const ActionRefundPaymentSchema = Type.Composite([
+  Type.Object({
+    action: Type.Literal('refundPayment'),
+  }),
+  Type.Object({
+    amount: AmountSchema,
+    merchantReference: Type.Optional(Type.String()),
+  }),
+]);
+
+export const ActionCancelPaymentSchema = Type.Composite([
+  Type.Object({
+    action: Type.Literal('cancelPayment'),
+    merchantReference: Type.Optional(Type.String()),
+  }),
+]);
+
+export const ActionReversePaymentSchema = Type.Composite([
+  Type.Object({
+    action: Type.Literal('reversePayment'),
+    merchantReference: Type.Optional(Type.String()),
+  }),
+]);
+
 /**
  * Payment intent request schema.
  *
@@ -19,6 +53,19 @@ export const AmountSchema = Type.Object({
  *  ]
  * }
  */
+export const PaymentIntentRequestSchema = Type.Object({
+  actions: Type.Array(
+    Type.Union([
+      ActionCapturePaymentSchema,
+      ActionRefundPaymentSchema,
+      ActionCancelPaymentSchema,
+      ActionReversePaymentSchema,
+    ]),
+    {
+      maxItems: 1,
+    },
+  ),
+});
 
 export enum PaymentModificationStatus {
   APPROVED = 'approved',

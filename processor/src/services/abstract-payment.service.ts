@@ -75,6 +75,8 @@ export abstract class AbstractPaymentService {
   public async modifyPayment(opts: ModifyPayment): Promise<PaymentProviderModificationResponse> {
     const ctPayment = await this.ctPaymentService.getPayment({
       id: opts.paymentId,
-    });
+    }); 
+    return {} as PaymentProviderModificationResponse;
   }
+  
 }
