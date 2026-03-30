@@ -389,7 +389,7 @@ export class NovalnetPaymentService extends AbstractPaymentService {
 
       const tid = responseData?.transaction?.tid ?? "";
       const paymentType = responseData?.transaction?.payment_type ?? "";
-      const isTestMode = responseData?.transaction?.test_mode === 1;
+      const isTestMode = responseData?.transaction?.test_mode == 0;
       const status = responseData?.transaction?.status;
       const state =
         status === "PENDING" || status === "ON_HOLD"
@@ -590,14 +590,14 @@ export class NovalnetPaymentService extends AbstractPaymentService {
     const lang = String(request.data?.lang ?? "en") as SupportedLocale;
     const orderNumber = getFutureOrderNumberFromContext();
     const transaction: Record<string, any> = {
-      test_mode: testMode === "1" ? "1" : "0",
+      test_mode: testMode == "1" ? "1" : "0",
       payment_type: String(request.data.paymentMethod.type),
       amount: String(parsedCart?.taxedPrice?.totalGross?.centAmount),
       currency: String(parsedCart?.taxedPrice?.totalGross?.currencyCode),
       order_no: String(orderNumber),
     };
-	const deliveryStreet =  this.splitStreetByComma(deliveryAddress?.streetName);
-	const billingStreet =this.splitStreetByComma(billingAddress?.streetName);
+	const deliveryStreet = this.splitStreetByComma(deliveryAddress?.streetName);
+	const billingStreet = this.splitStreetByComma(billingAddress?.streetName);
 
 	const deliveryAddressStreetName = deliveryStreet.streetName;
 	const deliveryAddressStreetNumber = deliveryStreet.streetNumber;
@@ -832,7 +832,7 @@ export class NovalnetPaymentService extends AbstractPaymentService {
     const parsedResponse = JSON.parse(responseString);
     const statusCode = parsedResponse?.transaction?.status_code;
     const testModeText =
-      parsedResponse?.transaction?.test_mode == 1 ? "Test Order" : "";
+      parsedResponse?.transaction?.test_mode == 0 ? "Test Order" : "";
     const status = parsedResponse?.transaction?.status;
     const state =
       status === "PENDING" || status === "ON_HOLD"
@@ -852,7 +852,7 @@ export class NovalnetPaymentService extends AbstractPaymentService {
     const amount = transactions?.amount;
     const tid = transactions?.tid;
     const paymentType = transactions?.payment_type;
-    const isTestMode = transactions?.test_mode === 1;
+    const isTestMode = transactions?.test_mode == 0;
 
     const bankDetails = transactions?.bank_details;
     const accountHolder = bankDetails?.account_holder;
@@ -2246,7 +2246,7 @@ export class NovalnetPaymentService extends AbstractPaymentService {
         email: parsedCart.customerEmail,
       },
       transaction: {
-        test_mode: testMode === "1" ? "1" : "0",
+        test_mode: testMode == "1" ? "1" : "0",
         payment_type: type.toUpperCase(),
         amount: String(parsedCart?.taxedPrice?.totalGross?.centAmount),
         currency: String(parsedCart?.taxedPrice?.totalGross?.currencyCode),

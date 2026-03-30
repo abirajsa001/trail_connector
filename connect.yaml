@@ -51,7 +51,7 @@ deployAs:
           description: Novalnet webhook URL for payment notifications
           required: false
         - key: NOVALNET_INVOICE_TEST_MODE
-          description: Enable test mode for Invoice payments (0=Live, 1=Test)
+          description: Enable test mode for Invoice payments (0=Test, 1=Live)
           required: false
         - key: NOVALNET_INVOICE_DUE_DATE
           description: Due date in days for Invoice payments
@@ -62,7 +62,7 @@ deployAs:
         - key: NOVALNET_INVOICE_PAYMENT_ACTION_MINIMUM_AMOUNT
           description: Minimum amount for Invoice payment action
         - key: NOVALNET_GUARANTEED_INVOICE_TEST_MODE
-          description: Enable test mode for Guanrantee Invoice payments (0=Live, 1=Test)
+          description: Enable test mode for Guanrantee Invoice payments (0=Test, 1=Live)
           required: false
         - key: NOVALNET_GUARANTEED_INVOICE_ALLOW_B2B_CUSTOMERS
           description: Enable test mode for Guanrantee Invoice payments (0=Disable, 1=Enable)
@@ -77,7 +77,7 @@ deployAs:
           description: Minimum amount for Guanrantee Invoice payment action
           required: false
         - key: NOVALNET_GUARANTEED_SEPA_TEST_MODE
-          description: Enable test mode for Guanrantee Sepa payments (0=Live, 1=Test)
+          description: Enable test mode for Guanrantee Sepa payments (0=Test, 1=Live)
           required: false
         - key: NOVALNET_GUARANTEED_SEPA_ALLOW_B2B_CUSTOMERS
           description: Enable test mode for Guanrantee Sepa payments (0=Disable, 1=Enable)
@@ -92,7 +92,7 @@ deployAs:
           description: Minimum amount for Guanrantee Sepa payment action
           required: false
         - key: NOVALNET_PREPAYMENT_TEST_MODE
-          description: Enable test mode for Prepayment (0=Live, 1=Test)
+          description: Enable test mode for Prepayment (0=Test, 1=Live)
           required: false
         - key: NOVALNET_PREPAYMENT_DUE_DATE
           description: Due date in days for Prepayment
@@ -104,7 +104,7 @@ deployAs:
           description: Minimum amount for Prepayment action
           required: false
         - key: NOVALNET_SEPA_TEST_MODE
-          description: Enable test mode for Sepa (0=Live, 1=Test)
+          description: Enable test mode for Sepa (0=Test, 1=Live)
           required: false
         - key: NOVALNET_SEPA_DUE_DATE
           description: Due date in days for Sepa
@@ -116,7 +116,7 @@ deployAs:
           description: Minimum amount for Sepa action
           required: false
         - key: NOVALNET_CREDITCARD_TEST_MODE
-          description: Enable test mode for Creditcard (0=Live, 1=Test)
+          description: Enable test mode for Creditcard (0=Test, 1=Live)
           required: false
         - key: NOVALNET_CREDITCARD_PAYMENT_ACTION
           description: Payment action for Creditcard (payment/authorize)
@@ -131,49 +131,49 @@ deployAs:
           description: Display inline creditcard form
           required: false
         - key: NOVALNET_ACH_TEST_MODE
-          description: Enable test mode for ACH (0=Live, 1=Test)
+          description: Enable test mode for ACH (0=Test, 1=Live)
           required: false
         - key: NOVALNET_MULTIBANCO_TEST_MODE
-          description: Enable test mode for Multibanco (0=Live, 1=Test)
+          description: Enable test mode for Multibanco (0=Test, 1=Live)
           required: false
         - key: NOVALNET_ALIPAY_TEST_MODE
-          description: Enable test mode for Alipay (0=Live, 1=Test)
+          description: Enable test mode for Alipay (0=Test, 1=Live)
           required: false
         - key: NOVALNET_BANCONTACT_TEST_MODE
-          description: Enable test mode for Bancontact (0=Live, 1=Test)
+          description: Enable test mode for Bancontact (0=Test, 1=Live)
           required: false
         - key: NOVALNET_BLIK_TEST_MODE
-          description: Enable test mode for BLik (0=Live, 1=Test)
+          description: Enable test mode for BLik (0=Test, 1=Live)
           required: false
         - key: NOVALNET_EPS_TEST_MODE
-          description: Enable test mode for EPS (0=Live, 1=Test)
+          description: Enable test mode for EPS (0=Test, 1=Live)
           required: false
         - key: NOVALNET_MBWAY_TEST_MODE
-          description: Enable test mode for Mbway (0=Live, 1=Test)
+          description: Enable test mode for Mbway (0=Test, 1=Live)
           required: false
         - key: NOVALNET_ONLINE_BANK_TRANSFER_TEST_MODE
-          description: Enable test mode for Online Bank Transfer (0=Live, 1=Test)
+          description: Enable test mode for Online Bank Transfer (0=Test, 1=Live)
           required: false
         - key: NOVALNET_PAYPAL_TEST_MODE
-          description: Enable test mode for Paypal (0=Live, 1=Test)
+          description: Enable test mode for Paypal (0=Test, 1=Live)
           required: false
         - key: NOVALNET_POSTFINANCE_TEST_MODE
-          description: Enable test mode for Postfinance (0=Live, 1=Test)
+          description: Enable test mode for Postfinance (0=Test, 1=Live)
           required: false
         - key: NOVALNET_POSTFINANCE_CARD_TEST_MODE
-          description: Enable test mode for Postfinance card (0=Live, 1=Test)
+          description: Enable test mode for Postfinance card (0=Test, 1=Live)
           required: false
         - key: NOVALNET_PRZELEWY24_TEST_MODE
-          description: Enable test mode for Przelewy24 (0=Live, 1=Test)
+          description: Enable test mode for Przelewy24 (0=Test, 1=Live)
           required: false
         - key: NOVALNET_TRUSTLY_TEST_MODE
-          description: Enable test mode for trustly (0=Live, 1=Test)
+          description: Enable test mode for trustly (0=Test, 1=Live)
           required: false
         - key: NOVALNET_TWINT_TEST_MODE
-          description: Enable test mode for Twint (0=Live, 1=Test)
+          description: Enable test mode for Twint (0=Test, 1=Live)
           required: false
         - key: NOVALNET_WECHATPAY_TEST_MODE
-          description: Enable test mode for Wechatpay (0=Live, 1=Test)
+          description: Enable test mode for Wechatpay (0=Test, 1=Live)
           required: false
         - key: MERCHANT_RETURN_URL
           description: Merchant return URL for payment completion
