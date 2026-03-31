@@ -682,11 +682,11 @@ export class NovalnetPaymentService extends AbstractPaymentService {
         .get()
         .execute();
       const ctCustomer: Customer = customerRes.body;
-      firstName = ctCustomer.firstName;
-      lastName = ctCustomer.lastName;
+      firstName = String(ctCustomer.firstName);
+      lastName = String(ctCustomer.lastName);
     } else {
-      firstName = ctCart.shippingAddress?.firstName;
-      lastName = ctCart.shippingAddress?.lastName;
+      firstName = String(ctCart.shippingAddress?.firstName);
+      lastName = String(ctCart.shippingAddress?.lastName);
     }
 
     const novalnetPayload = {
