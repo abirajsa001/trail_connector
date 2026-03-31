@@ -50,7 +50,6 @@ import {
 } from "../dtos/operations/transaction.dto";
 import { log } from "../libs/logger";
 import * as Context from "../libs/fastify/context/context";
-import { ExtendedUpdatePayment } from "./types/payment-extension";
 import {
   createTransactionCommentsType,
   createOrderPaymentCommentsType,
