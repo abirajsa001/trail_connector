@@ -135,41 +135,10 @@ export class NovalnetPaymentService extends AbstractPaymentService {
       log: appLogger,
       checks: [
         healthCheckCommercetoolsPermissions({
-          requiredPermissions: [
-            "manage_payments",
-            "view_sessions",
-            "view_api_clients",
-            "manage_orders",
-            "introspect_oauth_tokens",
-            "manage_checkout_payment_intents",
-            "manage_types",
-          ],
+          requiredPermissions: [ "manage_payments", "view_sessions", "view_api_clients", "manage_orders", "introspect_oauth_tokens", "manage_checkout_payment_intents", "manage_types"],
           ctAuthorizationService: paymentSDK.ctAuthorizationService,
           projectKey: getConfig().projectKey,
         }),
-        async () => {
-          try {
-            const paymentMethods = "card";
-            return {
-              name: "Mock Payment API",
-              status: "UP",
-              message: "Mock api is working",
-              details: {
-                paymentMethods,
-              },
-            };
-          } catch (e) {
-            return {
-              name: "Mock Payment API",
-              status: "DOWN",
-              message:
-                "The mock payment API is down for some reason. Please check the logs for more details.",
-              details: {
-                error: e,
-              },
-            };
-          }
-        },
       ],
       metadataFn: async () => ({
         name: packageJSON.name,
@@ -265,7 +234,7 @@ export class NovalnetPaymentService extends AbstractPaymentService {
       })
       .execute();
   }
-
+ 
   public async getConfigValues({ data }: { data: any }) {
     try {
       const clientKey = String(getConfig()?.novalnetClientkey ?? "");
@@ -391,21 +360,14 @@ export class NovalnetPaymentService extends AbstractPaymentService {
       const paymentType = responseData?.transaction?.payment_type ?? "";
       const isTestMode = responseData?.transaction?.test_mode == 0;
       const status = responseData?.transaction?.status;
-      const state =
-        status === "PENDING" || status === "ON_HOLD"
-          ? "Pending"
-          : status === "CONFIRMED"
-          ? "Success"
-          : status === "CANCELLED"
-          ? "Canceled"
-          : "Failure";
+      const state = status === "PENDING" || status === "ON_HOLD" ? "Pending" : status === "CONFIRMED" ? "Success" : status === "CANCELLED" ? "Canceled" : "Failure";
       const statusCode = responseData?.transaction?.status_code ?? "";
       const supportedLocales: SupportedLocale[] = ["en", "de"];
       const localizedTransactionComments = supportedLocales.reduce(
         (acc, locale) => {
           acc[locale] = [
-            t(locale, "payment.transactionId", { tid }),
             t(locale, "payment.paymentType", { type: paymentType }),
+            t(locale, "payment.transactionId", { tid }),
             isTestMode ? t(locale, "payment.testMode") : "",
           ].join("\n");
           return acc;
@@ -616,41 +578,25 @@ export class NovalnetPaymentService extends AbstractPaymentService {
 	) {
 	  const paymentType = String(request.data.paymentMethod.type).toUpperCase();
 
-	  /* ================= Address check ================= */
 	  const sameAddress =
-		billingAddress?.city === deliveryAddress?.city &&
-		billingAddress?.country === deliveryAddress?.country &&
-    billingAddressStreetName === deliveryAddressStreetName &&
-		billingAddressStreetNumber === deliveryAddressStreetNumber &&
-		billingAddress?.postalCode === deliveryAddress?.postalCode;
+		billingAddress?.city == deliveryAddress?.city &&
+		billingAddress?.country == deliveryAddress?.country &&
+    billingAddressStreetName == deliveryAddressStreetName &&
+		billingAddressStreetNumber == deliveryAddressStreetNumber &&
+		billingAddress?.postalCode == deliveryAddress?.postalCode;
 
-	  /* ================= Country check ================= */
 	  const billingCountry = billingAddress && billingAddress.country;
 	  const isEuropean = billingCountry
 		? this.getEuropeanRegionCountryCodes().includes(billingCountry)
 		: false;
 
-	  /* ================= Currency check ================= */
-	  const isEur =
-		String(parsedCart?.taxedPrice?.totalGross?.currencyCode) === "EUR";
-
-    
-	  /* ================= Amount check ================= */
+	  const isEur = String(parsedCart?.taxedPrice?.totalGross?.currencyCode) == "EUR";
 	  const orderTotal = Number(parsedCart?.taxedPrice?.totalGross?.centAmount ?? 0);
 	  const minAmount = Number(minimumAmount) ?? 0;
 	  const amountValid = orderTotal >= minAmount;
-	  /* ================= B2B country check ================= */
 	  const countryAllowed = allowb2bCustomers && billingCountry && ["DE", "AT", "CH"].includes(billingCountry);
 
-	  /* ================= FINAL DECISION ================= */
-    const guaranteePayment =
-    Boolean(sameAddress) &&
-    Boolean(isEuropean) &&
-    Boolean(isEur) &&
-    Boolean(amountValid) &&
-    Boolean(countryAllowed);
- 
-	  /* ================= Force non-guarantee ================= */
+    const guaranteePayment = Boolean(sameAddress) && Boolean(isEuropean) && Boolean(isEur) && Boolean(amountValid) && Boolean(countryAllowed);
     const isForceNonGuarantee = forceNonGuarantee !== undefined && forceNonGuarantee !== null && !Number.isNaN(Number(forceNonGuarantee)) && Number(forceNonGuarantee) !== 0;
 	  if (isForceNonGuarantee && guaranteePayment) {
       if (paymentType === "GUARANTEED_DIRECT_DEBIT_SEPA") {
@@ -663,8 +609,7 @@ export class NovalnetPaymentService extends AbstractPaymentService {
 	  }
 	}
 
-  const company = billingAddress?.additionalAddressInfo ?? '';
-
+    const company = billingAddress?.additionalAddressInfo ?? '';
     let birthDate: string | undefined;
 
     if (!company) {
@@ -673,35 +618,28 @@ export class NovalnetPaymentService extends AbstractPaymentService {
         birthDate = this.formatBirthDateToYMD(rawBirthDate);
       }
     }
-    
-    if (
-      String(request.data.paymentMethod.type).toUpperCase() ===
-      "DIRECT_DEBIT_SEPA"
-    ) {
+     
+    if (String(request.data.paymentMethod.type).toUpperCase() == "DIRECT_DEBIT_SEPA") {
       transaction.payment_data = {
         account_holder: String(request.data.paymentMethod.accHolder),
         iban: String(request.data.paymentMethod.iban),
       };
     }
-    if (
-      String(request.data.paymentMethod.type).toUpperCase() === "DIRECT_DEBIT_SEPA" && String(request.data.paymentMethod.bic) != "") {
+
+    if (String(request.data.paymentMethod.type).toUpperCase() == "DIRECT_DEBIT_SEPA" && String(request.data.paymentMethod.bic) != "") {
       transaction.payment_data = {
         bic: String(request.data.paymentMethod.bic),
       };
     }
-    if (
-      String(request.data.paymentMethod.type).toUpperCase() ===
-      "DIRECT_DEBIT_ACH"
-    ) {
+
+    if ( String(request.data.paymentMethod.type).toUpperCase() == "DIRECT_DEBIT_ACH" ) {
       transaction.payment_data = {
         account_holder: String(request.data.paymentMethod.accHolder),
         account_number: String(request.data.paymentMethod.accountNumber),      
         routing_number: String(request.data.paymentMethod.routingNumber),
       };
     }
-    if (
-      String(request.data.paymentMethod.type).toUpperCase() === "CREDITCARD"
-    ) {
+    if ( String(request.data.paymentMethod.type).toUpperCase() === "CREDITCARD" ) {
       if (enforce3d == "1") {
         transaction.enforce_3d = 1;
       }
@@ -743,14 +681,12 @@ export class NovalnetPaymentService extends AbstractPaymentService {
         .withId({ ID: ctCart.customerId })
         .get()
         .execute();
-
       const ctCustomer: Customer = customerRes.body;
-
-      firstName = ctCustomer.firstName ?? "";
-      lastName = ctCustomer.lastName ?? "";
+      firstName = ctCustomer.firstName;
+      lastName = ctCustomer.lastName;
     } else {
-      firstName = ctCart.shippingAddress?.firstName ?? "";
-      lastName = ctCart.shippingAddress?.lastName ?? "";
+      firstName = ctCart.shippingAddress?.firstName;
+      lastName = ctCart.shippingAddress?.lastName;
     }
 
     const novalnetPayload = {
@@ -782,16 +718,15 @@ export class NovalnetPaymentService extends AbstractPaymentService {
         ...(birthDate && {
           birth_date: birthDate,
         }),
-       
       },
       transaction,
       custom: {
         input1: "ctpayment-id",
-        inputval1: String(ctPayment.id ?? "ctpayment-id not available"),
+        inputval1: String(ctPayment.id),
         input2: "pspReference",
-        inputval2: String(pspReference ?? "0"),
+        inputval2: String(pspReference),
         input3: "lang",
-        inputval3: String(lang ?? "lang not available"),
+        inputval3: String(lang),
       },
     };
 
@@ -1956,23 +1891,12 @@ export class NovalnetPaymentService extends AbstractPaymentService {
     novalnetHostIP: string
   ): Promise<string> {
     const headers = req.headers;
-
-    const ipKeys = [
-      "x-forwarded-host",
-      "x-forwarded-for",
-      "x-real-ip",
-      "x-client-ip",
-      "x-forwarded",
-      "x-cluster-client-ip",
-      "forwarded-for",
-      "forwarded",
-    ];
+    const ipKeys = [ 'HTTP_X_FORWARDED_HOST', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP', 'HTTP_CLIENT_IP', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR' ];
 
     for (const key of ipKeys) {
       const value = headers[key] as string | undefined;
-
       if (value) {
-        if (key === "x-forwarded-for" || key === "x-forwarded-host") {
+        if (key === "HTTP_X_FORWARDED_FOR" || key === "HTTP_X_FORWARDED_HOST") {
           const forwardedIPs = value.split(",").map((ip) => ip.trim());
           return forwardedIPs.includes(novalnetHostIP)
             ? novalnetHostIP
