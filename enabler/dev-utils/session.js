@@ -40,7 +40,7 @@ const getSessionId = async(cartId) => {
   const sessionMetadata = {
     processorUrl: __VITE_PROCESSOR_URL__,
     allowedPaymentMethods: ["invoice", "prepayment","ideal | Wero","sepa", "ach", "creditcard", "paypal", "onlinebanktransfer", "alipay", "bancontact", "blik", "eps", "mbway", "multibanco", "payconiq", "postfinance", "postfinancecard", "przelewy24", "trustly", "twint", "wechatpay"],
-  };
+  }; 
 
   const url = `${__VITE_CTP_SESSION_URL__}/${projectKey}/sessions`
 
