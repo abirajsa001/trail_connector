@@ -174,7 +174,7 @@ export enum PaymentMethod {
   GuaranteedInvoice = "GuaranteedInvoice",
   /* GuaranteedSepa */
   GuaranteedSepa = "GuaranteedSepa",
-  /* Ideal | Wero */
+  /* Ideal */
   Ideal = "ideal | Wero",
   /* TWINT */
   twint = "twint",
@@ -196,6 +196,8 @@ export enum PaymentMethod {
   mbway = "mbway",
   /* Multibanco */
   multibanco = "multibanco",
+  /* Payconiq */
+  payconiq = "payconiq",
   /* Postfinance */
   postfinance = "postfinance",
   /* Postfinancecard */

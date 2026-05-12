@@ -8,7 +8,6 @@ const fetchAdminToken = async () => {
 
   var urlencoded = new URLSearchParams();
   urlencoded.append('grant_type', 'client_credentials');
-  //urlencoded.append('scope', __VITE_ADMIN_SCOPE__);
 
   const response = await fetch(`${__VITE_CTP_AUTH_URL__}/oauth/token`, {
     body: urlencoded,
@@ -40,7 +39,7 @@ const getSessionId = async(cartId) => {
 
   const sessionMetadata = {
     processorUrl: __VITE_PROCESSOR_URL__,
-    allowedPaymentMethods: ["invoice", "prepayment","ideal","sepa", "ach", "creditcard", "paypal", "onlinebanktransfer", "alipay", "bancontact", "blik", "eps", "mbway", "multibanco", "postfinance", "postfinancecard", "przelewy24", "trustly", "twint", "wechatpay"], // add here your allowed methods for development purposes
+    allowedPaymentMethods: ["invoice", "prepayment","ideal | Wero","sepa", "ach", "creditcard", "paypal", "onlinebanktransfer", "alipay", "bancontact", "blik", "eps", "mbway", "multibanco", "payconiq", "postfinance", "postfinancecard", "przelewy24", "trustly", "twint", "wechatpay"],
   };
 
   const url = `${__VITE_CTP_SESSION_URL__}/${projectKey}/sessions`
