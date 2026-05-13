@@ -19,58 +19,104 @@ import { BaseOptions } from "../../../payment-enabler/novalnet-payment-enabler";
 import { checkoutFlow } from '@commercetools/checkout-browser-sdk';
 
 export class IdealBuilder implements PaymentComponentBuilder {
+
   public componentHasSubmit = true;
 
   constructor(private baseOptions: BaseOptions) {}
 
   build(config: ComponentOptions): PaymentComponent {
+
     return new Ideal(this.baseOptions, config);
   }
 }
 
 export class Ideal extends BaseComponent {
+
   private showPayButton: boolean;
 
-  constructor(baseOptions: BaseOptions, componentOptions: ComponentOptions) {
+  constructor(
+    baseOptions: BaseOptions,
+    componentOptions: ComponentOptions
+  ) {
 
-    // Keep internal payment type safe
+    // Keep internal type safe
     super(PaymentMethod.ideal, baseOptions, componentOptions);
 
-    this.showPayButton = componentOptions?.showPayButton ?? false;
+    this.showPayButton =
+      componentOptions?.showPayButton ?? false;
   }
 
   mount(selector: string) {
 
-    // Prevent invalid selector issue
+    // Fix invalid selector issue
     const safeSelector = selector.replace(/\|/g, '\\|');
 
     const container = document.querySelector(safeSelector);
 
     if (!container) {
-      console.error('Container not found:', safeSelector);
+
+      console.error(
+        'Container not found:',
+        safeSelector
+      );
+
       return;
     }
 
-    container.insertAdjacentHTML("afterbegin", this._getTemplate());
+    container.insertAdjacentHTML(
+      "afterbegin",
+      this._getTemplate()
+    );
+
+    // Update storefront payment label
+    setTimeout(() => {
+
+      const labels = document.querySelectorAll('label');
+
+      labels.forEach((label) => {
+
+        const text =
+          label.textContent?.trim().toLowerCase();
+
+        if (
+          text?.includes('ideal')
+        ) {
+
+          label.textContent = 'iDEAL | Wero';
+        }
+      });
+
+    }, 300);
 
     if (this.showPayButton) {
 
-      const button = document.querySelector("#purchaseOrderForm-paymentButton");
+      const button = document.querySelector(
+        "#purchaseOrderForm-paymentButton"
+      );
 
       if (button) {
-        button.addEventListener("click", (e) => {
-          e.preventDefault();
-          this.submit();
-        });
+
+        button.addEventListener(
+          "click",
+          (e) => {
+
+            e.preventDefault();
+
+            this.submit();
+          }
+        );
       }
     }
   }
 
   async submit() {
 
-    this.sdk.init({ environment: this.environment });
+    this.sdk.init({
+      environment: this.environment
+    });
 
-    const pathLocale = window.location.pathname.split("/")[1];
+    const pathLocale =
+      window.location.pathname.split("/")[1];
 
     const url = new URL(window.location.href);
 
@@ -78,12 +124,15 @@ export class Ideal extends BaseComponent {
 
     try {
 
-      const requestData: PaymentRequestSchemaDTO = {
+      const requestData:
+        PaymentRequestSchemaDTO = {
+
         paymentMethod: {
           type: 'IDEAL',
         },
 
-        paymentOutcome: PaymentOutcome.AUTHORIZED,
+        paymentOutcome:
+          PaymentOutcome.AUTHORIZED,
 
         lang: pathLocale ?? 'de',
 
@@ -93,39 +142,57 @@ export class Ideal extends BaseComponent {
       const response = await fetch(
         this.processorUrl + "/redirectPayment",
         {
+
           method: "POST",
 
           headers: {
-            "Content-Type": "application/json",
-            "X-Session-Id": this.sessionId,
+            "Content-Type":
+              "application/json",
+
+            "X-Session-Id":
+              this.sessionId,
           },
 
-          body: JSON.stringify(requestData),
+          body: JSON.stringify(
+            requestData
+          ),
         }
       );
 
       if (!response.ok) {
 
-        const errorText = await response.text();
+        const errorText =
+          await response.text();
 
-        console.error('HTTP error response:', errorText);
+        console.error(
+          'HTTP error response:',
+          errorText
+        );
 
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(
+          `HTTP error! status: ${response.status}`
+        );
       }
 
       const data = await response.json();
 
-      window.location.href = data.txnSecret;
+      window.location.href =
+        data.txnSecret;
 
     } catch (e) {
 
-      console.error('Error details:', {
-        message: e.message,
-        stack: e.stack,
-        name: e.name
-      });
+      console.error(
+        'Error details:',
+        {
+          message: e.message,
+          stack: e.stack,
+          name: e.name
+        }
+      );
 
-      this.onError("Some error occurred. Please try again.");
+      this.onError(
+        "Some error occurred. Please try again."
+      );
     }
   }
 
@@ -134,14 +201,21 @@ export class Ideal extends BaseComponent {
     return this.showPayButton
       ? `
     <div class="${styles.wrapper}">
-      <p>Pay easily with iDEAL | Wero and transfer the shopping amount within the specified date.</p>
+
+      <p>
+        Pay easily with iDEAL | Wero and transfer the shopping amount within the specified date.
+      </p>
 
       <button
-        class="${buttonStyles.button} ${buttonStyles.fullWidth} ${styles.submitButton}"
+        class="${buttonStyles.button}
+        ${buttonStyles.fullWidth}
+        ${styles.submitButton}"
+
         id="purchaseOrderForm-paymentButton"
       >
         Pay Now
       </button>
+
     </div>
     `
       : "";
