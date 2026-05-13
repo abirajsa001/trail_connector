@@ -130,6 +130,6 @@ export class NovalnetPaymentEnabler implements PaymentEnabler {
     }
   
     return new Builder(baseOptions);
-  }.0
+  }
 
 }
