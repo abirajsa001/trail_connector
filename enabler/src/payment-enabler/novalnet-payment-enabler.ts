@@ -83,23 +83,24 @@ export class NovalnetPaymentEnabler implements PaymentEnabler {
   async createComponentBuilder(
     type: string
   ): Promise<PaymentComponentBuilder | never> {
+  
     const { baseOptions } = await this.setupData;
   
-    // Normalize payment type
-    const normalizedType = type?.trim().toLowerCase();
+    // Normalize incoming type
+    const normalizedType = type
+      ?.trim()
+      .toLowerCase();
   
-    // Alias mapping for renamed/custom payment labels
-    const paymentTypeAliases: Record<string, string> = {
-      'ideal': 'ideal',
-      'ideal | Wero': 'ideal',
-      'ideal | wero': 'ideal',
-    };
+    // Convert display label to internal key
+    let paymentType = normalizedType;
   
-    // Final mapped type
-    const mappedType =
-      paymentTypeAliases[normalizedType] || normalizedType;
+    if (
+      normalizedType.includes('ideal')
+    ) {
+      paymentType = 'ideal';
+    }
   
-    const supportedMethods: Record<string, any> = {
+    const supportedMethods = {
       invoice: InvoiceBuilder,
       prepayment: PrepaymentBuilder,
       guaranteedinvoice: GuaranteedInvoiceBuilder,
@@ -124,10 +125,10 @@ export class NovalnetPaymentEnabler implements PaymentEnabler {
       creditcard: CreditcardBuilder,
     };
   
-    const Builder = supportedMethods[mappedType];
+    const Builder = supportedMethods[paymentType];
   
     if (!Builder) {
-      throw new Error(`Unsupported payment method: ${type}`);
+      throw new Error(`Unsupported payment type: ${type}`);
     }
   
     return new Builder(baseOptions);
