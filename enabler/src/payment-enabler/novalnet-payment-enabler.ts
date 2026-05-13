@@ -86,17 +86,15 @@ export class NovalnetPaymentEnabler implements PaymentEnabler {
   
     const { baseOptions } = await this.setupData;
   
-    // Normalize incoming type
+    // Normalize incoming payment type
     const normalizedType = type
       ?.trim()
       .toLowerCase();
   
-    // Convert display label to internal key
+    // Convert Merchant Center label to internal type
     let paymentType = normalizedType;
   
-    if (
-      normalizedType.includes('ideal')
-    ) {
+    if (normalizedType.includes('ideal')) {
       paymentType = 'ideal';
     }
   
@@ -132,6 +130,6 @@ export class NovalnetPaymentEnabler implements PaymentEnabler {
     }
   
     return new Builder(baseOptions);
-  }
+  }.0
 
 }
