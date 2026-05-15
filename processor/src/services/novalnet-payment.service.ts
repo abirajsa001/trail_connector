@@ -389,7 +389,7 @@ export class NovalnetPaymentService extends AbstractPaymentService {
 
       const tid = responseData?.transaction?.tid ?? "";
       const paymentType = responseData?.transaction?.payment_type ?? "";
-      const isTestMode = responseData?.transaction?.test_mode == 0;
+      const isTestMode = responseData?.transaction?.test_mode == 1;
       const status = responseData?.transaction?.status;
       const state =
         status === "PENDING" || status === "ON_HOLD"
@@ -852,7 +852,7 @@ export class NovalnetPaymentService extends AbstractPaymentService {
     const amount = transactions?.amount;
     const tid = transactions?.tid;
     const paymentType = transactions?.payment_type;
-    const isTestMode = transactions?.test_mode == 0;
+    const isTestMode = transactions?.test_mode == 1;
 
     const bankDetails = transactions?.bank_details;
     const accountHolder = bankDetails?.account_holder;
