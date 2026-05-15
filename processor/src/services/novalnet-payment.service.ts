@@ -590,7 +590,7 @@ export class NovalnetPaymentService extends AbstractPaymentService {
     const lang = String(request.data?.lang ?? "en") as SupportedLocale;
     const orderNumber = getFutureOrderNumberFromContext();
     const transaction: Record<string, any> = {
-      test_mode: testMode == 1 ? "1" : "0",
+      test_mode: Number(testMode) === 1 ? "1" : "0",
       payment_type: String(request.data.paymentMethod.type),
       amount: String(parsedCart?.taxedPrice?.totalGross?.centAmount),
       currency: String(parsedCart?.taxedPrice?.totalGross?.currencyCode),
@@ -2237,7 +2237,7 @@ export class NovalnetPaymentService extends AbstractPaymentService {
         email: parsedCart.customerEmail,
       },
       transaction: {
-        test_mode: testMode == 1 ? "1" : "0",
+        test_mode: Number(testMode) === 1 ? "1" : "0",
         payment_type: type.toUpperCase(),
         amount: String(parsedCart?.taxedPrice?.totalGross?.centAmount),
         currency: String(parsedCart?.taxedPrice?.totalGross?.currencyCode),
